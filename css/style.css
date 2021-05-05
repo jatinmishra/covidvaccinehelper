@@ -1,0 +1,47 @@
+body {
+    font-family: arial;
+    font-weight: bold;
+    color: rgba(255, 255, 255, .75);
+}
+
+#subMain {
+    display: grid;
+    width: 25%;
+    margin: auto;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+#button {
+    margin: auto;
+    margin-top: 50px;
+}
+
+tr {
+    cursor: pointer;
+}
+
+.fixed-table-toolbar {
+    display: none !important;
+}
+
+#backToSearch {
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+    margin: auto;
+    color: blue;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    display: none;
+    width: 18rem;
+}

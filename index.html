@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CovidVaccineHelper</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
+    <script type="text/javascript" src="js/main.js"></script>
+</head>
+
+<body>
+    <div style="display: flex;justify-content: center; margin-bottom: 25px;">
+        <p id="header" style="font-size: 5rem; margin: auto;">Covid Vaccine Helper</p>
+    </div>
+    <p id="backToSearch" onclick="showMain()"> Back To Search Page</p>
+    <div id="main">
+        <div id="subMain" class="card">
+            <div class="card-header" style="font-size: 1.5rem; text-align: center;">Search For Vaccination Centres.
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label style="font-size: 1.5rem;" for="exampleInputEmail1">Area Pincode</label>
+                    <input id="pincode" type="number" onkeypress='validate(event)' class="form-control"
+                        placeholder="Please Enter Pincode">
+                </div>
+                <div class="form-group">
+                    <label style="font-size: 1.5rem;" for="dateTxt">Date</label>
+                    <input type="date" id="dateTxt" name="date" max="2021-06-30" placeholder="Date"
+                        class="form-control">
+                </div>
+                <button onclick="searchVaccineCenters()" class="btn btn-primary">Search</button>
+            </div>
+            <div id="loader" style="display: none;">
+                <div class="d-flex justify-content-center">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="searchContainer" style="display: none; margin: auto; width: 90%; margin-top: 1rem;">
+        <h2>Covid Vaccine Centres Search Results</h2>
+        <h5> Please click on any center's row to get details about the available session in that center. </h4>
+            <table id="centerList" style="margin-top: 1rem;" class="table-striped border-success" data-sorting="true"
+                data-pagination="true" data-search="true">
+                <thead>
+                    <tr>
+                        <th data-field="center_id">
+                            <span class="text-success">
+                                Center ID
+                            </span>
+                        </th>
+                        <th data-field="name">
+                            <span class="text-success">
+                                Center Name
+                            </span>
+                        </th>
+                        <th data-field="address">
+                            <span class="text-success">
+                                Address
+                            </span>
+                        </th>
+                        <th data-field="state_name">
+                            <span class="text-success">
+                                State
+                            </span>
+                        </th>
+                        <th data-field="district_name">
+                            <span class="text-success">
+                                District
+                            </span>
+                        </th>
+                        <th data-field="block_name">
+                            <span class="text-success">
+                                Block Name
+                            </span>
+                        </th>
+                        <th data-field="pincode">
+                            <span class="text-success">
+                                Pincode
+                            </span>
+                        </th>
+                        <th data-field="from">
+                            <span class="text-success">
+                                From Time
+                            </span>
+                        </th>
+                        <th data-field="to">
+                            <span class="text-success">
+                                To Time
+                            </span>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+            <div id="availableSessions" style="margin-top: 2rem;">
+                <h2 id="sessionCenterID">Available Sessions</h2>
+                <table id="centerSessionList" class="table-striped border-success" data-sorting="true"
+                    data-pagination="true" data-search="true" style="margin-top: 1rem;">
+                    <thead>
+                        <tr>
+                            <th data-field="session_id">
+                                <span class="text-success">
+                                    ID
+                                </span>
+                            </th>
+                            <th data-field="date">
+                                <span class="text-success">
+                                    Date
+                                </span>
+                            </th>
+                            <th data-field="available_capacity">
+                                <span class="text-success">
+                                    Capacity
+                                </span>
+                            </th>
+                            <th data-field="min_age_limit">
+                                <span class="text-success">
+                                    Minimum Age Limit
+                                </span>
+                            </th>
+                            <th data-field="vaccine">
+                                <span class="text-success">
+                                    Vaccine Name
+                                </span>
+                            </th>
+                            <th data-field="slots">
+                                <span class="text-success">
+                                    Slots
+                                </span>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <!-- <div id="availableVaccine">
+            <h2 id="vaccineCenterID">Available Vaccines</h2>
+            <table id="centerVaccineList" class="table-striped border-success" data-sorting="true"
+                data-pagination="true" data-search="true">
+                <thead>
+                    <tr>
+                        <th data-field="vaccine">
+                            <span class="text-success">
+                                Vaccine
+                            </span>
+                        </th>
+                        <th data-field="fee">
+                            <span class="text-success">
+                                Fee
+                            </span>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div> -->
+    </div>
+    <!-- Include jQuery and other required
+  files for Bootstrap -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+
+    <!-- Include the JavaScript file  for Bootstrap table -->
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js">
+    </script>
+</body>
+
+</html>
