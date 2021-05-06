@@ -2,11 +2,13 @@ $('#searchContainer').hide();
 $('#loader').hide();
 
 function setupListner() {
-    $('#centerList').on('click-row.bs.table', function (row, $element, field) {
-        console.log(row);
-        console.log($element);
-        console.log(field);
-        showSlotDetails($element);
+    $('#centerList').on('click-cell.bs.table', function (field, value, row, $element) {
+        if (value == "address") {
+            openMap($element);
+        }
+        else if (value == "center_id") {
+            showSlotDetails($element);
+        }
     });
 }
 
@@ -38,7 +40,6 @@ function searchVaccineCenters() {
                     $('#searchContainer').show();
                     $('#availableSessions').hide();
                 }
-
             }
         };
 
@@ -87,4 +88,8 @@ function showMain() {
     $('#searchContainer').hide();
     $('#main').show();
     $('#header').text('Covid Vaccine Helper');
+}
+
+function openMap(data) {
+    window.open("https://www.google.com/maps/search/" + data.name + " " + data.address);
 }

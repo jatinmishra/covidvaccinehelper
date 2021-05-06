@@ -45,3 +45,11 @@ tr {
     display: none;
     width: 18rem;
 }
+
+#footer {
+    bottom: 0;
+    height: 3rem;
+    background-color: black;
+    position: fixed;
+    width: 100%;
+}
